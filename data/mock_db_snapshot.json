@@ -1,0 +1,9 @@
+{
+  "database": "orders_db",
+  "tables": {
+    "orders": 15240,
+    "customers": 6340,
+    "payments": 16021
+  },
+  "taken_at": "2026-02-20T04:00:00Z"
+}

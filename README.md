@@ -1,22 +1,21 @@
-﻿# SQL Backup Validation Pipeline Lab
+# SQL Backup Validation Pipeline Lab
 
-## Objetivo
-Minimizar riesgo en cambios de BD con validaciones y respaldos previos.
+Pipeline local para validar scripts SQL y simular respaldo antes de ejecutar cambios.
 
-## Stack
-SQL Server, MySQL, Git, PowerShell/Bash
+## Que hace
+- Revisa reglas basicas de seguridad SQL
+- Bloquea patrones de alto riesgo (`DROP DATABASE`, `TRUNCATE`, `DELETE` sin `WHERE`)
+- Genera backup de snapshot JSON
+- Registra ejecucion en `out/execution_log.json`
 
-## Arquitectura
-Repo -> Pre-check SQL -> Backup -> Aprobacion -> Ejecucion -> Log
+## Ejecutar
+```powershell
+cd C:\Users\Administrator\portfolio-redes-projects\sql-backup-validation-pipeline-lab
+powershell -ExecutionPolicy Bypass -File .\scripts\main.ps1
+```
 
-## KPI esperado
--40% errores en despliegues SQL
-
-## Estructura sugerida
-- docs/ diagramas y decisiones tecnicas
-- scripts/ automatizaciones
-- src/ codigo principal
-- 	ests/ pruebas basicas
-
-## Proximos pasos
-Agregar reglas estaticas y rollback automatico.
+## Probar
+```powershell
+cd C:\Users\Administrator\portfolio-redes-projects\sql-backup-validation-pipeline-lab
+python -m unittest tests\test_sql_pipeline.py -v
+```
