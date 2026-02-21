@@ -5,8 +5,11 @@ Pipeline local para validar scripts SQL y simular respaldo antes de ejecutar cam
 ## Que hace
 - Revisa reglas basicas de seguridad SQL
 - Bloquea patrones de alto riesgo (`DROP DATABASE`, `TRUNCATE`, `DELETE` sin `WHERE`)
+- Marca warning cuando hay escrituras sin transaccion explicita
+- Procesa lotes de cambios desde `data/changes/*.sql`
 - Genera backup de snapshot JSON
-- Registra ejecucion en `out/execution_log.json`
+- Genera rollback SQL base por ejecucion aprobada
+- Registra corridas en `out/execution_log.json` y `out/latest_run.json`
 
 ## Ejecutar
 ```powershell
